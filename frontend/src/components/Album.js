@@ -29,9 +29,8 @@ const Album = ({ album }) => {
   return (
     <StyledAlbum>
       <Link to={`/trilhas/${album._id}`} style={{ textDecoration: 'none' }}>
-        <img src={album.imgURL} alt={album.name} />
+        <img src={album.imgURI} alt={album.name} />
         <h3>{album.name}</h3>
-        <p>{album.synopsis}</p>
       </Link>
     </StyledAlbum>
   )

@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
-import trilhas from './data/db.js'
+import albumRoutes from './routes/albumRoutes.js'
 
 dotenv.config()
 
@@ -13,14 +14,11 @@ app.get('/', (req, res) => {
   res.send('API is running...')
 })
 
-app.get('/api/trilhas', (req, res) => {
-  res.json(trilhas)
-})
+app.use('/api/trilhas', albumRoutes)
 
-app.get('/api/trilhas/:id', (req, res) => {
-  const album = trilhas.find((a) => a._id === req.params.id)
-  res.json(album)
-})
+app.use(notFound)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

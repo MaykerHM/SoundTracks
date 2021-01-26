@@ -32,8 +32,7 @@ const AlbumScreen = ({ match }) => {
   return (
     <Col>
       <h1>{album.name}</h1>
-      <AlbumImg src={album.imgURL} alt={album.name} />
-      <p>{album.synopsis}</p>
+      <AlbumImg src={album.imgURI} alt={album.name} />
       <ul>
         {album.tracks.map((track) => (
           <Track music={track.music} artist={track.artist} />
