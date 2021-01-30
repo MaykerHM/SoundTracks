@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Album from '../components/Album'
+import Loader from '../components/LoaderSpinner'
 import styled from 'styled-components'
-import axios from 'axios'
+import { listAlbums } from '../actions/albumActions'
 
 const Gallery = styled.div`
   display: grid;
@@ -36,29 +38,32 @@ const Content = styled.div`
 `
 
 const AlbumsScreen = () => {
-  const [albums, setAlbums] = useState([])
+  const dispatch = useDispatch()
+
+  const albumList = useSelector((state) => state.albumList)
+  const { loading, error, albums } = albumList
 
   useEffect(() => {
-    const fetchAlbums = async () => {
-      const res = await axios.get('/api/trilhas')
-
-      setAlbums(res.data)
-    }
-
-    fetchAlbums()
-  }, [])
+    dispatch(listAlbums())
+  }, [dispatch])
 
   return (
     <>
       <Col>
         <h1>Trilhas Sonoras</h1>
-        <Content>
-          <Gallery>
-            {albums.map((album) => (
-              <Album album={album} />
-            ))}
-          </Gallery>
-        </Content>
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <h3>{error}</h3>
+        ) : (
+          <Content>
+            <Gallery>
+              {albums.map((album) => (
+                <Album album={album} />
+              ))}
+            </Gallery>
+          </Content>
+        )}
       </Col>
     </>
   )
