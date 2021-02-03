@@ -4,6 +4,7 @@ import Album from '../components/Album'
 import Loader from '../components/LoaderSpinner'
 import styled from 'styled-components'
 import { listAlbums } from '../actions/albumActions'
+import { Col } from '../styles'
 
 const Gallery = styled.div`
   display: grid;
@@ -20,13 +21,6 @@ const Gallery = styled.div`
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
-`
-
-const Col = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 `
 
 const Content = styled.div`

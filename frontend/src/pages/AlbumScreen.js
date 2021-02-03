@@ -4,13 +4,7 @@ import styled from 'styled-components'
 import Track from '../components/Track'
 import Loader from '../components/LoaderSpinner'
 import { listAlbumDetails } from '../actions/albumActions.js'
-
-const Col = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
+import { Col } from '../styles'
 
 const AlbumImg = styled.img`
   max-width: 600px;

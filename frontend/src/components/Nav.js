@@ -29,9 +29,6 @@ const Nav = () => {
       </Link>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
           <Link to='/trilhas'>Trilhas</Link>
         </li>
       </ul>

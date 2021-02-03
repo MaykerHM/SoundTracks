@@ -1,12 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Col } from '../styles'
 
-const Col = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`
 const HomeScreen = () => {
   return (
     <Col>

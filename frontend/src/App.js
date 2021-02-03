@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import HomeScreen from './pages/HomeScreen'
 import AlbumsScreen from './pages/AlbumsScreen'
 import AlbumScreen from './pages/AlbumScreen'
+import LoginScreen from './pages/LoginScreen'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' exact component={HomeScreen} />
         <Route path='/trilhas' exact component={AlbumsScreen} />
         <Route path='/trilhas/:id' component={AlbumScreen} />
+        <Route path='/login' component={LoginScreen} />
       </Switch>
     </Router>
   )

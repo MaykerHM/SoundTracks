@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import users from './data/users.js'
+import User from './models/userModel.js'
 import albums from './data/albums.js'
 import Album from './models/albumModel.js'
 import connectDB from './config/db.js'
@@ -13,6 +15,7 @@ const importData = async () => {
     // await Album.deleteMany()
 
     await Album.insertMany(albums)
+    await User.insertMany(users)
 
     console.log('Data Imported!')
     process.exit()
