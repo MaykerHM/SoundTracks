@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { logout } from '../actions/userActions'
 
 const StyledNav = styled.nav`
   background: black;
@@ -22,6 +24,16 @@ const StyledNav = styled.nav`
 `
 
 const Nav = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const logoutHandler = () => {
+    dispatch(logout())
+    history.push('/login')
+  }
   return (
     <StyledNav>
       <Link to='/'>
@@ -32,6 +44,7 @@ const Nav = () => {
           <Link to='/trilhas'>Trilhas</Link>
         </li>
       </ul>
+      {userInfo ? <button onClick={logoutHandler}>Sair</button> : null}
     </StyledNav>
   )
 }

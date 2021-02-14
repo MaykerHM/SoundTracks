@@ -2,8 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/LoaderSpinner'
-import { login } from '../actions/userActions'
-import { Col } from '../styles'
+import { login } from '../actions/userActions.js'
+import styled from 'styled-components'
+
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 100vw;
+`
+
+const Form = styled.form`
+  height: 80vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+`
 
 const LoginScreen = ({ location, history }) => {
   const [username, setUsername] = useState('')
@@ -14,7 +31,7 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/admin'
 
   useEffect(() => {
     if (userInfo) {
@@ -27,12 +44,12 @@ const LoginScreen = ({ location, history }) => {
     dispatch(login(username, password))
   }
   return (
-    <Col>
-      <form onSubmit={submitHandler}>
+    <Main>
+      <Form onSubmit={submitHandler}>
         <h1>Logo</h1>
-        {error && <h1>{error}</h1>}
+        {error && <h3>{error}</h3>}
         {loading && <Loader />}
-        <h3>Username</h3>
+        <h3>Login</h3>
         <input
           type='text'
           placeholder='Username'
@@ -41,14 +58,14 @@ const LoginScreen = ({ location, history }) => {
         />
         <h3>Password</h3>
         <input
-          type='text'
+          type='password'
           placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type='submit'>Acessar</button>
-      </form>
-    </Col>
+      </Form>
+    </Main>
   )
 }
 

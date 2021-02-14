@@ -9,15 +9,16 @@ const authUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body
 
   const user = await User.findOne({ username })
+  const userData = await {
+    _id: user._id,
+    name: user.name,
+    username: user.username,
+    isAdmin: user.isAdmin,
+    token: generateToken(user._id),
+  }
 
   if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      username: user.username,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
-    })
+    res.json(userData)
   } else {
     res.status(401)
     throw new Error('Usuário ou senha inválida!')
