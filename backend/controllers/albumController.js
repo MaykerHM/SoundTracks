@@ -24,4 +24,23 @@ const getAlbumById = asyncHandler(async (req, res) => {
   }
 })
 
-export { getAlbums, getAlbumById }
+const createAlbum = asyncHandler(async (req, res) => {
+  const newAlbum = new Album({
+    name: req.body.name,
+  })
+  try {
+    newAlbum.save()
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
+const deleteAlbum = asyncHandler(async (req, res) => {
+  try {
+    await Album.remove({ _id: req.params.id })
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
+export { getAlbums, getAlbumById, createAlbum, deleteAlbum }

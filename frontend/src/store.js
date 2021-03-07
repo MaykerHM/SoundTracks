@@ -4,12 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   albumListReducer,
   albumDetailsReducer,
+  albumCreateReducer,
+  albumDeleteReducer,
 } from './reducers/albumReducers.js'
 import { userLoginReducer } from './reducers/userReducers'
 
 const reducer = combineReducers({
   albumList: albumListReducer,
   albumDetails: albumDetailsReducer,
+  albumCreate: albumCreateReducer,
+  albumDelete: albumDeleteReducer,
   userLogin: userLoginReducer,
 })
 

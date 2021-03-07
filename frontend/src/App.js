@@ -11,7 +11,8 @@ import AdminScreen from './pages/AdminScreen'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false)
+  //TODO: mudar para false quando terminar a pagina admin
+  const [isAdmin, setIsAdmin] = useState(true)
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 

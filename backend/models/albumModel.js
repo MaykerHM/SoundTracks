@@ -28,7 +28,7 @@ const albumSchema = mongoose.Schema(
     },
     imgURI: {
       type: String,
-      required: true,
+      default: '',
     },
     tracks: [trackSchema],
   },

@@ -6,4 +6,12 @@ const Col = styled.div`
   align-items: center;
   flex-direction: column;
 `
-export { Col }
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+`
+
+export { Col, Row }
