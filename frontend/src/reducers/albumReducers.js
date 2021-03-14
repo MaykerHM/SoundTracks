@@ -11,6 +11,9 @@ import {
   ALBUM_DELETE_REQUEST,
   ALBUM_DELETE_SUCCESS,
   ALBUM_DELETE_FAIL,
+  TRACKS_UPDATE_FAIL,
+  TRACKS_UPDATE_SUCCESS,
+  TRACKS_UPDATE_REQUEST,
 } from '../constants/albumConstants.js'
 
 export const albumListReducer = (state = { albums: [] }, action) => {
@@ -68,6 +71,22 @@ export const albumDeleteReducer = (
     case ALBUM_DELETE_SUCCESS:
       return { loading: false, album: action.payload }
     case ALBUM_DELETE_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const tracksUpdateReducer = (
+  state = { album: { tracks: [] } },
+  action
+) => {
+  switch (action.type) {
+    case TRACKS_UPDATE_REQUEST:
+      return { loading: true, ...state }
+    case TRACKS_UPDATE_SUCCESS:
+      return { loading: false, album: action.payload }
+    case TRACKS_UPDATE_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

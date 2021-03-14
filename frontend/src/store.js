@@ -6,6 +6,7 @@ import {
   albumDetailsReducer,
   albumCreateReducer,
   albumDeleteReducer,
+  tracksUpdateReducer,
 } from './reducers/albumReducers.js'
 import { userLoginReducer } from './reducers/userReducers'
 
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   albumDetails: albumDetailsReducer,
   albumCreate: albumCreateReducer,
   albumDelete: albumDeleteReducer,
+  tracksUpdate: tracksUpdateReducer,
   userLogin: userLoginReducer,
 })
 

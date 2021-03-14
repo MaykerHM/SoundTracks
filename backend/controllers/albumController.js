@@ -37,10 +37,22 @@ const createAlbum = asyncHandler(async (req, res) => {
 
 const deleteAlbum = asyncHandler(async (req, res) => {
   try {
-    await Album.remove({ _id: req.params.id })
+    await Album.remove({ _id: req.body.id })
   } catch (error) {
     res.json({ message: error })
   }
 })
 
-export { getAlbums, getAlbumById, createAlbum, deleteAlbum }
+const updateTracks = asyncHandler(async (req, res) => {
+  try {
+    const updatedTracks = await Album.updateOne(
+      { _id: req.body.id },
+      { $set: { tracks: req.body.tracks } }
+    )
+    res.send(req.body)
+  } catch (error) {
+    res.json({ message: error })
+  }
+})
+
+export { getAlbums, getAlbumById, createAlbum, deleteAlbum, updateTracks }

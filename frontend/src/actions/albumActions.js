@@ -12,6 +12,9 @@ import {
   ALBUM_DELETE_REQUEST,
   ALBUM_DELETE_SUCCESS,
   ALBUM_DELETE_FAIL,
+  TRACKS_UPDATE_REQUEST,
+  TRACKS_UPDATE_SUCCESS,
+  TRACKS_UPDATE_FAIL,
 } from '../constants/albumConstants.js'
 
 export const listAlbums = () => async (dispatch) => {
@@ -64,7 +67,11 @@ export const createAlbum = (name) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.post('/api/trilhas/admin', { name }, config)
+    const { data } = await axios.post(
+      '/api/trilhas/admin/album',
+      { name },
+      config
+    )
 
     dispatch({
       type: ALBUM_CREATE_SUCCESS,
@@ -85,7 +92,9 @@ export const deleteAlbum = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALBUM_DELETE_REQUEST })
 
-    const { data } = await axios.delete(`/api/trilhas/admin/${id}`)
+    const { data } = await axios.delete('/api/trilhas/admin/album', {
+      data: { id },
+    })
 
     dispatch({
       type: ALBUM_DELETE_SUCCESS,
@@ -94,6 +103,37 @@ export const deleteAlbum = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ALBUM_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const updateTracks = (id, tracks) => async (dispatch) => {
+  try {
+    dispatch({ type: TRACKS_UPDATE_REQUEST })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(
+      '/api/trilhas/admin/album/tracks',
+      { id, tracks },
+      config
+    )
+
+    dispatch({
+      type: TRACKS_UPDATE_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: TRACKS_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

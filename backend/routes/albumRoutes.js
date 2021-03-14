@@ -5,11 +5,12 @@ import {
   getAlbumById,
   createAlbum,
   deleteAlbum,
+  updateTracks,
 } from '../controllers/albumController.js'
 
 router.route('/').get(getAlbums)
 router.route('/:id').get(getAlbumById)
-router.route('/admin').post(createAlbum).delete(deleteAlbum)
-router.route('/admin/:id').delete(deleteAlbum)
+router.route('/admin/album').post(createAlbum).delete(deleteAlbum)
+router.route('/admin/album/tracks').post(updateTracks)
 
 export default router

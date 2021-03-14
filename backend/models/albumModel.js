@@ -8,7 +8,7 @@ const trackSchema = mongoose.Schema(
     },
     artist: {
       type: String,
-      required: true,
+      default: '',
     },
     musicURI: {
       type: String,

@@ -56,11 +56,11 @@ export default function DialogDeleteAlbum({
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color='primary'>
-            Cancelar
-          </Button>
           <Button onClick={handleDeleteAlbum} color='primary'>
             Excluir
+          </Button>
+          <Button onClick={handleClose} color='primary'>
+            Cancelar
           </Button>
         </DialogActions>
       </Dialog>
