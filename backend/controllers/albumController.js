@@ -45,7 +45,7 @@ const deleteAlbum = asyncHandler(async (req, res) => {
 
 const updateTracks = asyncHandler(async (req, res) => {
   try {
-    const updatedTracks = await Album.updateOne(
+    await Album.updateOne(
       { _id: req.body.id },
       { $set: { tracks: req.body.tracks } }
     )

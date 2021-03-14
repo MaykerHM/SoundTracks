@@ -10,6 +10,7 @@ import DialogDeleteTrack from '../components/DialogDeleteTrack'
 import Loader from 'react-loader-spinner'
 import { FiFile, FiFilePlus, FiSave, FiTrash } from 'react-icons/fi'
 import { Col, Row } from '../styles'
+import mongoose from 'mongoose'
 
 const AdminScreen = () => {
   const dispatch = useDispatch()
@@ -76,17 +77,19 @@ const AdminScreen = () => {
     setTracks(newTracks)
   }
 
+  const handleSaveTracks = () => {
+    dispatch(updateTracks(album._id, tracks))
+    dispatch(listAlbums())
+  }
+
   const handleRemoveTrack = (id) => {
     const filteredTracks = tracks.filter((track) => track._id !== id)
     setTracks(filteredTracks)
   }
 
-  const handleSaveTracks = () => {
-    dispatch(updateTracks(album._id, tracks))
-  }
-
   const handleAddNewTrack = () => {
     const newTrack = {
+      _id: mongoose.Types.ObjectId(),
       music: '',
       artist: '',
       musicURI: '',
@@ -186,7 +189,7 @@ const AdminScreen = () => {
                   <TextField
                     required
                     variant='outlined'
-                    placeholder='artist'
+                    placeholder='artista'
                     value={track ? track.artist : 'none'}
                     onChange={(e) =>
                       handleOnchangeInputText(

@@ -4,7 +4,7 @@ const trackSchema = mongoose.Schema(
   {
     music: {
       type: String,
-      required: true,
+      default: '',
     },
     artist: {
       type: String,
